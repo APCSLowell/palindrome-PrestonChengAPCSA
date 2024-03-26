@@ -1,27 +1,6 @@
-import java.io.File;  // Import the File class
-import java.io.FileNotFoundException;  // Import this class to handle errors
-import java.util.Scanner; // Import the Scanner class to read text files
-
-public class PalindromeChecker {
-public void tester()
+public void setup()
 {
-  //String lines[] = loadStrings("palindromes.txt");
-  String[] lines = new String[6]; 
-    try{
-        File myFile = new File("palindromes.txt");
-        Scanner myReader = new Scanner(myFile);
-        int counter = 0;
-        while (myReader.hasNextLine()) {
-            String data = myReader.nextLine();
-            lines[counter] = data;
-            counter++;
-        }
-        myReader.close();
-    }
-    catch (FileNotFoundException e) {
-        System.out.println("An error occurred.");
-        e.printStackTrace();
-    }
+  String lines[] = {"test","rotator","rewriter","nurses run", "Madam, I'm Adam!", "A Man! A Plan! A Canal! Panama!"};
   System.out.println("there are " + lines.length + " lines");
   for (int i=0; i < lines.length; i++) 
   {
@@ -37,33 +16,32 @@ public void tester()
 }
 public boolean palindrome(String word)
 {
-  int checker = 0;
-  if(word.length() == 0){
-    return true;
-  } else {
-    int lastIndex = word.length()-1;
+  String original = new String();
+  
   for(int i = 0; i < word.length(); i++){
-    if(word.charAt(i) == word.charAt(lastIndex)){
-      checker++;
-      lastIndex--;
-    } else {
-      return false;
+    if(Character.isLetter(word.charAt(i))){
+      original = original + word.charAt(i);
     }
   }
-  
-  if(checker != 0){
+  System.out.println(original);
+  original = original.toLowerCase();
+  if(original.equals(reverse(word))){
     return true;
   }
   return false;
 }
-}
+
 public String reverse(String str)
 {
     String sNew = new String();
     //your code here
-  for(int i = str.length()-1; i >= 0; i --){
-    sNew = sNew + str.charAt(i);
-  }
+    for(int i = str.length()-1; i >= 0; i--){
+      if(Character.isLetter(str.charAt(i))){
+         sNew = sNew + str.charAt(i);
+      }
+
+    }
+    sNew = sNew.toLowerCase();
+    System.out.println(sNew);
     return sNew;
-}
 }
