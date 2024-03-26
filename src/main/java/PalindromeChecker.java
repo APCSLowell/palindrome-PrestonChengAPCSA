@@ -61,7 +61,7 @@ public String reverse(String str)
     String sNew = new String();
     //your code here
   for(int i = str.length()-1; i >= 0; i --){
-    backwards = backwards + str.charAt(i);
+    sNew = sNew + str.charAt(i);
   }
     return sNew;
 }
