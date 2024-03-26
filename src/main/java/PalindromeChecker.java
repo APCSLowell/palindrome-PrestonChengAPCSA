@@ -1,6 +1,27 @@
-public void setup()
+import java.io.File;  // Import the File class
+import java.io.FileNotFoundException;  // Import this class to handle errors
+import java.util.Scanner; // Import the Scanner class to read text files
+
+public class PalindromeChecker {
+public void tester()
 {
-  String lines[] = {"test","rotator","rewriter","nurses run", "Madam, I'm Adam!", "A Man! A Plan! A Canal! Panama!"};
+  //String lines[] = loadStrings("palindromes.txt");
+  String[] lines = new String[6]; 
+    try{
+        File myFile = new File("palindromes.txt");
+        Scanner myReader = new Scanner(myFile);
+        int counter = 0;
+        while (myReader.hasNextLine()) {
+            String data = myReader.nextLine();
+            lines[counter] = data;
+            counter++;
+        }
+        myReader.close();
+    }
+    catch (FileNotFoundException e) {
+        System.out.println("An error occurred.");
+        e.printStackTrace();
+    }
   System.out.println("there are " + lines.length + " lines");
   for (int i=0; i < lines.length; i++) 
   {
@@ -16,32 +37,13 @@ public void setup()
 }
 public boolean palindrome(String word)
 {
-  String original = new String();
-  
-  for(int i = 0; i < word.length(); i++){
-    if(Character.isLetter(word.charAt(i))){
-      original = original + word.charAt(i);
-    }
-  }
-  System.out.println(original);
-  original = original.toLowerCase();
-  if(original.equals(reverse(word))){
-    return true;
-  }
+  //your code here
   return false;
 }
-
 public String reverse(String str)
 {
     String sNew = new String();
     //your code here
-    for(int i = str.length()-1; i >= 0; i--){
-      if(Character.isLetter(str.charAt(i))){
-         sNew = sNew + str.charAt(i);
-      }
-
-    }
-    sNew = sNew.toLowerCase();
-    System.out.println(sNew);
     return sNew;
+}
 }
